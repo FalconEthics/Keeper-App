@@ -2,6 +2,7 @@ import {AiFillEdit} from 'react-icons/ai';
 import {BsFillTrashFill} from 'react-icons/bs';
 import {useDispatch} from 'react-redux';
 import {remove} from '../store/noteSlice';
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 function Notes(props) {
     const dispatch = useDispatch();
