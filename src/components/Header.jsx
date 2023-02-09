@@ -1,14 +1,10 @@
-import React from "react";
-import { CgNotes } from 'react-icons/cg';
-
+import { TbNotes} from 'react-icons/tb';
 function Header() {
-  return (
-    <header>
-      <h1 className="flex text-2xl">
-        <CgNotes className="mr-2"/> Keeper-App
-      </h1>
-    </header>
-  );
+    return (
+        <header className="p-3 bg-amber-300 text-2xl text-white font-extrabold shadow-2xl">
+            <TbNotes className="inline-block"/><span className="inline-block">Keeper</span>
+        </header>
+    )
 }
 
-export default Header;
+export default Header
