@@ -8,7 +8,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 function App() {
     const notes = useSelector(state => state.note);
-    const [listRef] = useAutoAnimate({ duration: 500, delay: 100, easing: 'ease-in-out' })
+    const [listRef] = useAutoAnimate({ duration: 200, delay: 0, easing: 'ease-in-out' })
     return (<div
             className="space-y-3 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] h-screen font-sans">
             <Header/>

@@ -10,7 +10,7 @@ const noteSlice = createSlice({
         },
         remove(state, action) {
             state.splice(action.payload, 1);
-        },
+        }
     },
 });
 
