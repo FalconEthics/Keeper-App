@@ -2,7 +2,7 @@ import {AiFillEdit} from 'react-icons/ai';
 import {BsFillTrashFill} from 'react-icons/bs';
 import {useDispatch} from 'react-redux';
 import {remove} from '../store/noteSlice';
-import { useAutoAnimate } from '@formkit/auto-animate/react'
+
 
 function Notes(props) {
     const dispatch = useDispatch();
@@ -17,7 +17,7 @@ function Notes(props) {
                     <div className=" p-1 ml-auto flex flex-row space-x-2"><AiFillEdit className="text-white"/><BsFillTrashFill onClick={() => deleteNote(props.id)} className="hover:text-black text-white"/></div>
                 </div>
                 <span className="text-xl break-words">{props.title}</span>
-                <span className="text-sm text-gray-600 break-words">L{props.content}</span>
+                <span className="text-sm text-gray-600 break-words">{props.content}</span>
             </div>
         </div>
     )
