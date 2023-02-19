@@ -66,7 +66,7 @@ A Front-End clone model of Google Keep, one can use it as small note pad (it cur
 Here are all the components used in the build.
 
 * [![JS][Es6.com]][Es6-url] - JavaScript Framework
-* [![Git][[Git.com]]][Git-url] - Global State Management
+* [![Redux][Redux.com]][Redux-url] - Global State Management
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url] - CSS Library
 * [![Git][Git.com]][Git-url] - Deployment
 
