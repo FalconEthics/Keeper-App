@@ -66,6 +66,7 @@ A Front-End clone model of Google Keep, one can use it as small note pad (it cur
 Here are all the components used in the build.
 
 * [![JS][Es6.com]][Es6-url] - JavaScript Framework
+* [![Git][[Git.com]]][Git-url] - Global State Management
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url] - CSS Library
 * [![Git][Git.com]][Git-url] - Deployment
 
@@ -177,3 +178,5 @@ Deployed Site: [https://keeper-app-rosy-eight.vercel.app/](https://keeper-app-ro
 [Es6-url]: https://reactjs.org/
 [Git.com]: https://img.shields.io/badge/vercel-FF6900?style=for-the-badge&logo=vercel&logoColor=white
 [Git-url]: https://vercel.com/
+[Redux.com]: https://img.shields.io/badge/Redux-750000?style=for-the-badge&logo=redux&logoColor=white
+[Redux-url]: https://redux-toolkit.js.org/
