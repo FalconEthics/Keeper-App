@@ -18,9 +18,14 @@ const reducer = (state, action) => {
             return {
                 ...state, note: value, time: timeStamp
             }
+        case "createId":
+            value = state.id + 1
+            return {
+                ...state, id: value
+            }
         case "clean":
             return {
-                title: "", note: "", time: ""
+                ...state, title: "", note: ""
             }
         default:
             return state;
@@ -29,7 +34,7 @@ const reducer = (state, action) => {
 
 export function CreateNotes() {
     const {setNotes} = useContext(UserContext);
-    const [state, dispatch] = useReducer(reducer, {title: "", note: "", time: ""});
+    const [state, dispatch] = useReducer(reducer, {id: 0, title: "", note: "", time: ""});
     const [expanded, setExpanded] = useState(false);
 
     function uploadNote() {
@@ -37,6 +42,7 @@ export function CreateNotes() {
             return [...prevNotes, state]
         });
         dispatch({type: "clean"});
+        console.log(state);
     }
 
     return (<>
@@ -46,7 +52,7 @@ export function CreateNotes() {
             <div
                 className={"flex flex-col w-full sm:w-2/3 lg:w-2/5 drop-shadow-2xl bg-white p-4 rounded-2xl"}>
                 <input name={"title"} value={state.title} type="text" placeholder={"Title"} maxLength={"50"}
-                       className={"p-1 rounded-lg"}
+                       className={"p-1 rounded-lg focus:outline-none outline-amber-200"}
                        onClick={() => {
                            setExpanded(true);
                        }}
@@ -54,7 +60,7 @@ export function CreateNotes() {
                            dispatch({type: "saveTitleChanges"});
                        }}/>
                 <textarea name={"note"} value={state.note} placeholder={"Write your Note here!"} spellCheck={"true"}
-                          className={`rounded-lg transition-all duration-300 ${expanded ? "h-24 opacity-100 mt-2 p-1" : "h-0 opacity-0 p-0 m-0"}`}
+                          className={`focus:outline-none outline-amber-200 rounded-lg transition-all duration-300 ${expanded ? "h-24 opacity-100 mt-2 p-1" : "h-0 opacity-0 p-0 m-0"}`}
                           onChange={() => {
                               dispatch({type: "saveNoteChanges"});
                           }}>
@@ -62,6 +68,7 @@ export function CreateNotes() {
                 <button
                     className={"rounded-full bg-amber-300 w-fit p-2 hover:bg-amber-200 text-2xl absolute bottom-[-13%] right-8 text-white hover:text-black hover:scale-150"}
                     onClick={() => {
+                        dispatch({type: "createId"});
                         uploadNote();
                     }}>
                     <AiOutlinePlus/></button>
