@@ -9,7 +9,7 @@ export function Body() {
     const {notes, authModal} = useContext(UserContext)
     const [parent] = useAutoAnimate(/* optional config */)
 
-    return (<>
+    return (<div>
         <div className={"w-full flex-col justify-center p-6 space-y-8 mb-10"}>
             <CreateNotes/>
             <div className={"w-full grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-flow-row gap-4"} ref={parent}>
@@ -19,5 +19,5 @@ export function Body() {
             </div>
         </div>
         {authModal && <AuthModal/>}
-    </>)
+    </div>)
 }
