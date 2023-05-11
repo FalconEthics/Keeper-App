@@ -3,9 +3,10 @@ import {DisplayNotes} from "./subComponents/DisplayNotes.jsx";
 import {useContext} from "react";
 import {UserContext} from "../store/UserContext.jsx";
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import {AuthModal} from "./subComponents/AuthModal.jsx";
 
 export function Body() {
-    const {notes} = useContext(UserContext)
+    const {notes, authModal} = useContext(UserContext)
     const [parent] = useAutoAnimate(/* optional config */)
 
     return (<>
@@ -17,5 +18,6 @@ export function Body() {
                 })}
             </div>
         </div>
+        {authModal && <AuthModal/>}
     </>)
 }

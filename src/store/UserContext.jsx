@@ -4,10 +4,13 @@ export const UserContext = createContext(null);
 
 export const UserContextProvider = ({children}) => {
     const [notes, setNotes] = useState([]);
+    const [authModal, setAuthModal] = useState(false);
 
     const value = {
         notes,
-        setNotes
+        setNotes,
+        authModal,
+        setAuthModal
     };
 
     return (
