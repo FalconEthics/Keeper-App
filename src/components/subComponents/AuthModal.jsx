@@ -2,13 +2,13 @@ import {FcGoogle, GoMarkGithub} from "react-icons/all.js";
 import {UserContext} from "../../store/UserContext.jsx";
 import {useContext} from "react";
 import {auth, googleProvider} from "../../store/firebaseConfig.js";
-import {signInWithRedirect} from "firebase/auth";
+import {signInWithPopup} from "firebase/auth";
 
 export function AuthModal() {
     const {setAuthModal} = useContext(UserContext);
     const signInWithGoogle = async () => {
         try {
-            await signInWithRedirect(auth, googleProvider);
+            await signInWithPopup(auth, googleProvider);
         } catch (err) {
             console.error(err);
         }
