@@ -6,7 +6,8 @@ import {signOut, onAuthStateChanged} from "firebase/auth"
 
 export function Nav() {
     const {setAuthModal} = useContext(UserContext);
-    const [user, setUser] = useState(false); // Corrected line
+    const [user, setUser] = useState(false);
+    const [profileOptions, setProfileOptions] = useState(false)
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (data) => {
@@ -43,16 +44,25 @@ export function Nav() {
                             className={"bg-white rounded-full p-2 px-6 text-sm hover:scale-90 drop-shadow-2xl"}>
                             login/SignIn
                         </button>
-                        : <div className={"flex flex-row pr-4 space-x-4"}>
-                            <button
-                                onClick={logout}
-                                className={"bg-white rounded-full p-2 px-6 text-sm hover:scale-90 drop-shadow-2xl"}>
-                                logout
-                            </button>
-                            <img
-                                className={"rounded-full h-fit w-12 drop-shadow-2xl hover:scale-110"}
-                                src={auth?.currentUser?.photoURL}
-                                alt={"profile pic"}/>
+                        :
+                        <div className={"flex flex-col pr-4 space-y-2"}>
+                            <div className={"flex flex-row space-x-4 justify-end"}>
+                                <button
+                                    onClick={logout}
+                                    className={"bg-white rounded-full p-2 px-6 text-sm hover:scale-90 drop-shadow-2xl"}>
+                                    logout
+                                </button>
+                                <img
+                                    onClick={() => {setProfileOptions(!profileOptions)}}
+                                    className={"rounded-full h-fit w-12 drop-shadow-2xl hover:scale-110"}
+                                    src={auth?.currentUser?.photoURL}
+                                    alt={"profile pic"}/>
+                            </div>
+                            {profileOptions && <ul className={"bg-white rounded-2xl text-sm"}>
+                                <li className={"border-b-2 p-4"}>{auth?.currentUser?.displayName}</li>
+                                <li className={"border-b-2 p-4"}>{auth?.currentUser?.email}</li>
+                                <li className={"border-b-2 p-4"}>{auth?.currentUser?.metadata?.creationTime}</li>
+                            </ul>}
                         </div>}
                 </div>
             </nav>
