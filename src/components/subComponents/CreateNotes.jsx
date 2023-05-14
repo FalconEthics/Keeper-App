@@ -3,6 +3,7 @@ import {useContext, useEffect, useReducer, useRef, useState} from "react";
 import {UserContext} from "../../store/UserContext.jsx";
 import autoAnimate from "@formkit/auto-animate";
 import {addDoc} from "firebase/firestore"
+import {auth} from "../../store/firebaseConfig.js";
 
 const reducer = (state, action) => {
     let value = "";
@@ -36,7 +37,7 @@ const reducer = (state, action) => {
 
 export function CreateNotes() {
     const {setNotes, user, notesCollectionRef} = useContext(UserContext);
-    const [state, dispatch] = useReducer(reducer, {id: 0, title: "", note: "", time: ""});
+    const [state, dispatch] = useReducer(reducer, {id: 0, title: "", note: "", time: "", uploaderEmail: ""});
     const [expanded, setExpanded] = useState(false);
     const parent = useRef(null);
 
@@ -47,6 +48,7 @@ export function CreateNotes() {
                     title: state.title,
                     time: state.time,
                     note: state.note,
+                    uploaderEmail: auth?.currentUser?.email
                 })
             }
             catch (err) {

@@ -2,11 +2,14 @@ import {useContext, useState} from "react";
 import {UserContext} from "../store/UserContext.jsx";
 import {auth} from "../store/firebaseConfig.js";
 import {signOut} from "firebase/auth"
+import {BsSearch} from "react-icons/all.js";
 
 
 export function Nav() {
-    const {setAuthModal, user} = useContext(UserContext);
+    const {setAuthModal, user, search, setSearch} = useContext(UserContext);
     const [profileOptions, setProfileOptions] = useState(false);
+    const [searchOption, setSearchOption] = useState(false);
+
 
     const logout = async () => {
         try {
@@ -38,8 +41,20 @@ export function Nav() {
                                     className={"bg-white rounded-full p-2 px-6 text-sm hover:scale-90 drop-shadow-2xl"}>
                                     logout
                                 </button>
+                                {searchOption && <input type="text" onChange={(event) => {
+                                    setSearch(event.target.value);
+                                    console.log(search)
+                                }} className={"rounded-full p-2 text-sm"} placeholder={" Search note title"}></input>}
+                                <button onClick={() => {
+                                    setSearchOption(!searchOption)
+                                }}
+                                        className={"text-3xl p-1 text-white hover:scale-110 drop-shadow-2xl"}>
+                                    <BsSearch/>
+                                </button>
                                 <img
-                                    onClick={() => {setProfileOptions(!profileOptions)}}
+                                    onClick={() => {
+                                        setProfileOptions(!profileOptions)
+                                    }}
                                     className={"rounded-full h-fit w-12 drop-shadow-2xl hover:scale-110"}
                                     src={auth?.currentUser?.photoURL}
                                     alt={"profile pic"}/>

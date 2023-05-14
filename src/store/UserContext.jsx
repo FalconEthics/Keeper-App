@@ -11,11 +11,14 @@ export const UserContextProvider = ({children}) => {
     const [user, setUser] = useState(false);
     const [dbNotes, setDbNotes] = useState([]);
     const notesCollectionRef = collection(db, "Notes");
+    const [userId, setUserId] = useState("");
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (data) => {
             if (data) {
                 setUser(true);
+                setUserId(data.email)
             } else {
                 setUser(false);
                 console.log("logged out");
@@ -28,7 +31,10 @@ export const UserContextProvider = ({children}) => {
         const getNotesList = async () => {
             try {
                 const dbData = await getDocs(notesCollectionRef);
-                setDbNotes(dbData.docs.map(doc => ({...doc.data(), id: doc.id})));
+                const filtereData = dbData.docs.map(doc => ({...doc.data(), id: doc.id}));
+                setDbNotes(filtereData.filter((data) => {
+                    return data.uploaderEmail == userId
+                }));
             } catch (err) {
                 console.error(err)
             }
@@ -45,7 +51,9 @@ export const UserContextProvider = ({children}) => {
         setUser,
         dbNotes,
         setDbNotes,
-        notesCollectionRef
+        notesCollectionRef,
+        search,
+        setSearch
     };
 
     return (
