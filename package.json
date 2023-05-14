@@ -13,6 +13,7 @@
     "@formkit/auto-animate": "^1.0.0-beta.6",
     "@reduxjs/toolkit": "^1.9.5",
     "firebase": "^9.21.0",
+    "firebase-tools": "^12.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
