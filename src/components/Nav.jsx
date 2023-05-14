@@ -1,26 +1,12 @@
-import {useContext, useEffect, useState} from "react";
+import {useContext, useState} from "react";
 import {UserContext} from "../store/UserContext.jsx";
 import {auth} from "../store/firebaseConfig.js";
-import {signOut, onAuthStateChanged} from "firebase/auth"
+import {signOut} from "firebase/auth"
 
 
 export function Nav() {
-    const {setAuthModal} = useContext(UserContext);
-    const [user, setUser] = useState(false);
-    const [profileOptions, setProfileOptions] = useState(false)
-
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (data) => {
-            if (data) {
-                setUser(true);
-                console.log(data);
-            } else {
-                setUser(false);
-                console.log("logged out");
-            }
-        });
-        return () => unsubscribe();
-    }, []);
+    const {setAuthModal, user} = useContext(UserContext);
+    const [profileOptions, setProfileOptions] = useState(false);
 
     const logout = async () => {
         try {
@@ -58,7 +44,7 @@ export function Nav() {
                                     src={auth?.currentUser?.photoURL}
                                     alt={"profile pic"}/>
                             </div>
-                            {profileOptions && <ul className={"bg-white rounded-2xl text-sm"}>
+                            {profileOptions && <ul className={"bg-white rounded-2xl text-sm hidden lg:block"}>
                                 <li className={"border-b-2 p-4"}>{auth?.currentUser?.displayName}</li>
                                 <li className={"border-b-2 p-4"}>{auth?.currentUser?.email}</li>
                                 <li className={"border-b-2 p-4"}>{auth?.currentUser?.metadata?.creationTime}</li>

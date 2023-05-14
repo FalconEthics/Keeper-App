@@ -2,6 +2,7 @@ import {AiOutlinePlus} from "react-icons/all.js";
 import {useContext, useEffect, useReducer, useRef, useState} from "react";
 import {UserContext} from "../../store/UserContext.jsx";
 import autoAnimate from "@formkit/auto-animate";
+import {addDoc} from "firebase/firestore"
 
 const reducer = (state, action) => {
     let value = "";
@@ -34,15 +35,28 @@ const reducer = (state, action) => {
 }
 
 export function CreateNotes() {
-    const {setNotes} = useContext(UserContext);
+    const {setNotes, user, notesCollectionRef} = useContext(UserContext);
     const [state, dispatch] = useReducer(reducer, {id: 0, title: "", note: "", time: ""});
     const [expanded, setExpanded] = useState(false);
-    const parent = useRef(null)
+    const parent = useRef(null);
 
-    function uploadNote() {
-        setNotes((prevNotes) => {
-            return [...prevNotes, state]
-        });
+    const uploadNote = async () => {
+        if (user){
+            try {
+                await addDoc(notesCollectionRef, {
+                    title: state.title,
+                    time: state.time,
+                    note: state.note,
+                })
+            }
+            catch (err) {
+                console.error(err);
+            }
+        }else{
+            setNotes((prevNotes) => {
+                return [...prevNotes, state]
+            });
+        }
         dispatch({type: "clean"});
     }
 

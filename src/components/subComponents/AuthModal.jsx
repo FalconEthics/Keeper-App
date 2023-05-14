@@ -20,9 +20,6 @@ export function AuthModal() {
                 onClick={() => setAuthModal(false)}
                 className={"fixed overscroll-none top-0 left-0 bg-gray-500 w-screen h-screen z-10 bg-opacity-80 flex items-center justify-center"}>
                 <div
-                    // onClick={(e) => {
-                    //     e.stopPropagation();
-                    // }}
                     id={"modal"}
                     className={"flex flex-col sm:flex-row bg-white w-fit p-10 space-y-8 sm:space-x-8 sm:space-y-0 rounded-2xl drop-shadow-2xl"}>
                     <button
