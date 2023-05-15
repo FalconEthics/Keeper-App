@@ -75,6 +75,7 @@ export const UserContextProvider = ({children}) => {
     };
 
     return (
+        //used context api to as a global state management instead of redux
         <UserContext.Provider value={value}>
             {children}
         </UserContext.Provider>
