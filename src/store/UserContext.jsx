@@ -41,6 +41,7 @@ export const UserContextProvider = ({children}) => {
     }, []);
 
     useEffect(() => {
+        console.log("fetch check triggered")
         //to fetch notes only when the user is logged in
         if (user) {
             //to fetch the notes whenever the there is a change in the firestore
@@ -55,7 +56,7 @@ export const UserContextProvider = ({children}) => {
         else {
             setDbNotes([]);
         }
-    }, [notesCollectionRef, userId]);
+    }, []);
 
     const value = {
         notes,

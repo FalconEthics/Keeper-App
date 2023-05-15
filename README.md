@@ -148,16 +148,16 @@ I wanted to take this opportunity to refresh my React skills and explore the lat
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/FalconEthics/OIRAM.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/FalconEthics/keeper-app.svg?style=for-the-badge
 [contributors-url]: https://github.com/FalconEthics/keeper-app/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/FalconEthics/OIRAM.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/FalconEthics/keeper-app.svg?style=for-the-badge
 [forks-url]: https://github.com/FalconEthics/keeper-app/network/members
-[stars-shield]: https://img.shields.io/github/stars/FalconEthics/OIRAM.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/FalconEthics/keeper-app.svg?style=for-the-badge
 [stars-url]: https://github.com/FalconEthics/keeper-app/stargazers
-[issues-shield]: https://img.shields.io/github/issues/FalconEthics/OIRAM.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/FalconEthics/keeper-app.svg?style=for-the-badge
 
 [issues-url]: https://github.com/FalconEthics/keeper-app/issues
-[license-shield]: https://img.shields.io/github/license/FalconEthics/OIRAM.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/FalconEthics/keeper-app.svg?style=for-the-badge
 
 [license-url]: https://github.com/FalconEthics/keeper-app/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
