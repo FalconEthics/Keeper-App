@@ -6,12 +6,12 @@ import {BsSearch} from "react-icons/all.js";
 
 
 export function Nav() {
-    const {setAuthModal, user, search, setSearch} = useContext(UserContext);
+    const {setAuthModal, user, setSearch, searchOption, setSearchOption} = useContext(UserContext);
     const [profileOptions, setProfileOptions] = useState(false);
-    const [searchOption, setSearchOption] = useState(false);
 
 
     const logout = async () => {
+        console.log("logout triggered")
         try {
             await signOut(auth);
         } catch (err) {
@@ -22,9 +22,9 @@ export function Nav() {
     return (
         <>
             <nav className={"flex flex-row h-20 p-4 justify-between bg-amber-300/75 drop-shadow-xl"}>
-                <div className={"flex flex-row p-2 space-x-2"}>
+                <div className={"flex flex-row p-2"}>
                     <img src="/logo.png" alt="logo" className={"h-full drop-shadow-xl"}/>
-                    <span className={"p-1 text-xl font-sans drop-shadow-xl"}>Keeper-App</span>
+                    <span className={"p-2 text-xs sm:text-xl font-sans drop-shadow-xl"}>Keeper-App</span>
                 </div>
                 <div className={"flex flex-row"}>
                     {!user ?
@@ -43,8 +43,7 @@ export function Nav() {
                                 </button>
                                 {searchOption && <input type="text" onChange={(event) => {
                                     setSearch(event.target.value);
-                                    console.log(search)
-                                }} className={"rounded-full p-2 text-sm"} placeholder={" Search note title"}></input>}
+                                }} className={"absolute sm:static bottom-[-300%] left-2 rounded-full p-2 text-sm"} placeholder={" Search note title"}></input>}
                                 <button onClick={() => {
                                     setSearchOption(!searchOption)
                                 }}

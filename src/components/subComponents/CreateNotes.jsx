@@ -6,6 +6,8 @@ import {addDoc} from "firebase/firestore"
 import {auth} from "../../store/firebaseConfig.js";
 
 const reducer = (state, action) => {
+    console.log("reducer triggered")
+
     let value = "";
     let currentdate = new Date();
     let timeStamp = `${currentdate.getDate()}/${currentdate.getMonth() + 1}/${currentdate.getFullYear()} ~ ${currentdate.getHours()}:${currentdate.getMinutes()}`;
@@ -42,6 +44,7 @@ export function CreateNotes() {
     const parent = useRef(null);
 
     const uploadNote = async () => {
+        console.log("uploadNote triggered")
         if (user){
             try {
                 await addDoc(notesCollectionRef, {
@@ -63,6 +66,7 @@ export function CreateNotes() {
     }
 
     useEffect(() => {
+        console.log("animation triggered")
         parent.current && autoAnimate(parent.current, {duration: 300})
     }, [parent])
 
@@ -72,7 +76,7 @@ export function CreateNotes() {
         }}>
             <div
                 ref={parent}
-                className={"flex flex-col w-full sm:w-2/3 lg:w-2/5 drop-shadow-2xl bg-white p-4 rounded-2xl"}>
+                className={"flex flex-col w-full sm:w-2/3 lg:w-2/5 drop-shadow-xl bg-white p-4 rounded-2xl"}>
                 <input name={"title"} value={state.title} type="text" placeholder={"Title"} maxLength={"50"}
                        className={"p-1 rounded-lg focus:outline-none outline-amber-200"}
                        onClick={() => {

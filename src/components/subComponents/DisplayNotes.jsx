@@ -10,6 +10,7 @@ export function DisplayNotes(props) {
     const [updatedNote, setUpdatedNote] = useState("")
 
     const deleteNote = async (id) => {
+        console.log("deleteNote triggered")
         if (user) {
             try {
                 const noteToDelete = doc(db, "Notes", id);
@@ -25,10 +26,12 @@ export function DisplayNotes(props) {
     }
 
     function makeNoteEditable() {
+        console.log("makeNoteEditable triggered")
         setEditable(!editable);
     }
 
     const updateNote = async (id) => {
+        console.log("updateNote triggered")
         setEditable(!editable);
         try {
             const noteToUpdate = doc(db, "Notes", id);

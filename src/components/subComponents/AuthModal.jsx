@@ -7,6 +7,7 @@ import {signInWithPopup} from "firebase/auth";
 export function AuthModal() {
     const {setAuthModal} = useContext(UserContext);
     const signInWithGoogle = async () => {
+        console.log("signInWithGoogle triggered")
         try {
             await signInWithPopup(auth, googleProvider);
         } catch (err) {
