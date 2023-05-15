@@ -1,15 +1,36 @@
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {UserContext} from "../store/UserContext.jsx";
 import {auth} from "../store/firebaseConfig.js";
 import {signOut} from "firebase/auth"
 import {BsSearch} from "react-icons/all.js";
-
+import {collection, onSnapshot, where, query, orderBy} from "firebase/firestore";
+import {db} from "../store/firebaseConfig.js";
 
 export function Nav() {
     //importing context
-    const {setAuthModal, user, setSearch, searchOption, setSearchOption} = useContext(UserContext);
+    const {setAuthModal, dbNotes, setDbNotes, user, userId, setSearch, searchOption, setSearchOption} = useContext(UserContext);
     //to toggle profile options
     const [profileOptions, setProfileOptions] = useState(false);
+
+    //fetching notes from db
+    useEffect(() => {
+        //to store the firestore notes collection reference
+        const notesCollectionRef = collection(db, "Notes");
+        //to store the firestore query
+        const dbQuery = query(notesCollectionRef, where("uploaderEmail", "==", userId), orderBy('time', 'asc'));
+        //to get the notes from firestore
+        const unsubscribe = onSnapshot(dbQuery, (snapshot) => {
+            const updatedData = []
+            snapshot.forEach((doc) => {
+                updatedData.push({...doc.data(), id: doc.id});
+            });
+            setDbNotes(updatedData);
+            console.log(dbNotes);
+        });
+        return () => {
+            unsubscribe();
+        };
+    }, [user]);
 
     const logout = async () => {
         console.log("logout triggered")

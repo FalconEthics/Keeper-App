@@ -2,8 +2,8 @@ import {AiOutlinePlus} from "react-icons/all.js";
 import {useContext, useEffect, useReducer, useRef, useState} from "react";
 import {UserContext} from "../../store/UserContext.jsx";
 import autoAnimate from "@formkit/auto-animate";
-import {addDoc} from "firebase/firestore"
-import {auth} from "../../store/firebaseConfig.js";
+import {addDoc, collection} from "firebase/firestore"
+import {auth, db} from "../../store/firebaseConfig.js";
 
 const reducer = (state, action) => {
     //reducer function to handle state changes
@@ -56,6 +56,7 @@ export function CreateNotes() {
         //upload note to firestore if user is logged in else add note to local state
         if (user){
             try {
+                const notesCollectionRef = collection(db, "Notes");
                 //upload note to firestore
                 await addDoc(notesCollectionRef, {
                     title: state.title,

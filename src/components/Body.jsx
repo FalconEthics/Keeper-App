@@ -7,7 +7,7 @@ import {AuthModal} from "./subComponents/AuthModal.jsx";
 
 export function Body() {
     //importing context
-    const {notes, authModal, user, dbNotes, search, searchOption} = useContext(UserContext);
+    const {notes, authModal, user, dbNotes, setDbNotes, search, searchOption} = useContext(UserContext);
     //to use auto animate
     const [parent] = useAutoAnimate(/* optional config */);
     //filtering notes based on search
@@ -16,7 +16,7 @@ export function Body() {
     useEffect(() => {
         console.log("search filter triggered")
         if (search != null && search != "" && search != undefined) {
-            //filtering notes based on search input ~ case insensitive
+            //filtering notes based on search input ~ case-insensitive
             setSearchFilter(dbNotes.filter((data) => {
                 return data.title.toLowerCase().includes(search.toLowerCase())
             }));
@@ -24,11 +24,11 @@ export function Body() {
             //if search is empty then set notes to dbNotes
             setSearchFilter(dbNotes);
         }
-    }, [search]);
+    }, [search, dbNotes]);
 
 
     return (<div>
-        <div className={`w-full flex-col justify-center p-6 ${searchOption ? 'space-y-8' : 'space-y-12'} mb-10`}>
+        <div className={`w-full flex-col justify-center p-6 ${!searchOption ? 'space-y-8' : 'space-y-16'} mb-10`}>
             <CreateNotes/>
             <div className={"w-full grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-flow-row gap-4"}
                  ref={parent}>
